@@ -2,7 +2,6 @@ databases:
   - name: ta-analyser-db
     databaseName: ta_analyser
     user: ta_user
-    plan: free
 
 services:
   - type: web
@@ -19,13 +18,3 @@ services:
         generateValue: true
       - key: FLASK_ENV
         value: production
-    plan: free
-
-  - type: static
-    name: ta-analyser-frontend
-    buildCommand: cd ta_web_app/frontend && npm install && npm run build
-    staticPublishPath: ta_web_app/frontend/build
-    envVars:
-      - key: REACT_APP_API_URL
-        value: https://ta-analyser-backend.onrender.com
-    plan: free

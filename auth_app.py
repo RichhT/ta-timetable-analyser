@@ -11,7 +11,14 @@ from werkzeug.utils import secure_filename
 import json
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+
+# Configure CORS for production
+frontend_url = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
+CORS(app, 
+     supports_credentials=True,
+     origins=[frontend_url, 'http://localhost:3000'],
+     allow_headers=['Content-Type', 'Authorization'],
+     methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
 
 # Configuration
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-secret-key-change-in-production')
