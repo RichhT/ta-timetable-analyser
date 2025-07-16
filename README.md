@@ -1,13 +1,13 @@
-# Teaching Assistant Timetable Analyzer
+# Teaching Assistant Timetable Analyser
 
-A comprehensive web application for analyzing Teaching Assistant needs across school timetables, with configurable SEN weightings and interactive dashboards.
+A comprehensive web application for analysing Teaching Assistant needs across school timetables, with configurable SEN weightings and interactive dashboards.
 
 ## 🚀 Features
 
 - **📁 File Upload Management**: Drag-and-drop interface for CSV files (timetables, student classes, SEN data)
 - **⚖️ Configurable SEN Weightings**: Interactive dashboard to modify scoring weights for different SEN factors
 - **📊 Analysis Dashboard**: Visual charts and statistics showing need distribution
-- **🎯 Interactive Timetable Grid**: Color-coded priority levels for optimal TA deployment
+- **🎯 Interactive Timetable Grid**: Colour-coded priority levels for optimal TA deployment
 - **👥 Student Rankings**: Sortable table with detailed need breakdowns
 - **📚 Class Analysis**: Priority-based class listings with student details
 - **💾 Data Persistence**: Save configurations and results to database
@@ -183,4 +183,4 @@ For support or questions, please open an issue in the repository or contact the 
 
 ---
 
-Built with ❤️ for educational institutions to optimize Teaching Assistant deployment and support student needs effectively.
+Built with ❤️ for educational institutions to optimise Teaching Assistant deployment and support student needs effectively.

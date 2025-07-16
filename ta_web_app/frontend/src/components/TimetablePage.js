@@ -62,7 +62,7 @@ const TimetablePage = () => {
         <div>
           <Title level={2}>Timetable Grid</Title>
           <Text type="secondary">
-            Classes organized by time slot and prioritized by Teaching Assistant need score.
+            Classes organised by time slot and prioritised by Teaching Assistant need score.
           </Text>
         </div>
         <Button 

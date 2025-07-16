@@ -116,7 +116,7 @@ function App() {
           color: 'white',
           fontWeight: 'bold'
         }}>
-          {collapsed ? 'TA' : 'TA Analyzer'}
+          {collapsed ? 'TA' : 'TA Analyser'}
         </div>
         <Menu
           theme="light"
@@ -135,7 +135,7 @@ function App() {
           borderBottom: '1px solid #f0f0f0'
         }}>
           <h1 style={{ margin: 0, fontSize: '20px', color: '#1890ff' }}>
-            Teaching Assistant Timetable Analyzer
+            Teaching Assistant Timetable Analyser
           </h1>
         </Header>
         <Content style={{ 
