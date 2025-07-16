@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask
+instance/
+.webassets-cache
+
+# Database
+*.db
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Uploads
+uploads/
+*.csv
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node.js (for frontend)
+ta_web_app/frontend/node_modules/
+ta_web_app/frontend/.pnp
+ta_web_app/frontend/.pnp.js
+ta_web_app/frontend/coverage/
+ta_web_app/frontend/build/
+ta_web_app/frontend/.env.local
+ta_web_app/frontend/.env.development.local
+ta_web_app/frontend/.env.test.local
+ta_web_app/frontend/.env.production.local
+ta_web_app/frontend/npm-debug.log*
+ta_web_app/frontend/yarn-debug.log*
+ta_web_app/frontend/yarn-error.log*
+
+# Deployment
+.vercel
+.netlify
+.railway
+
+# Documents that might contain sensitive data
+*.docx
+*.doc
+*.pdf
+
+# Temporary files
+*.tmp
+*.temp
