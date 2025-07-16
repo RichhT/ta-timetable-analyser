@@ -43,4 +43,7 @@ export const getClasses = () => api.get('/api/classes');
 // Timetable
 export const getTimetableGrid = () => api.get('/api/timetable/grid');
 
+// Clear data
+export const clearData = () => api.post('/api/clear-data');
+
 export default api;

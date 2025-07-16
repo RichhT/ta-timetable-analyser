@@ -81,14 +81,32 @@ with app.app_context():
 # Global analyzer instance
 analyzer = TANeedAnalyzer()
 
+# Track upload session to clear data on new session
+upload_session_files = set()
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({'status': 'healthy', 'timestamp': datetime.utcnow().isoformat()})
 
+@app.route('/api/clear-data', methods=['POST'])
+def clear_data():
+    """Clear all analysis data and start fresh"""
+    global upload_session_files
+    analyzer.clear_analysis_data()
+    upload_session_files = set()
+    return jsonify({'message': 'All analysis data cleared successfully'})
+
 @app.route('/api/upload/<file_type>', methods=['POST'])
 def upload_file(file_type):
+    global upload_session_files
+    
     if file_type not in ['students_classes', 'students_sen', 'timetable']:
         return jsonify({'error': 'Invalid file type'}), 400
+    
+    # If this is the first file in a new session, clear previous data
+    if len(upload_session_files) == 0:
+        analyzer.clear_analysis_data()
+        print("Starting new upload session - cleared previous data")
     
     if 'file' not in request.files:
         return jsonify({'error': 'No file provided'}), 400
@@ -121,11 +139,15 @@ def upload_file(file_type):
             # Store file info in session/memory for now
             setattr(analyzer, f'{file_type}_file', filepath)
             
+            # Track this file type in the current upload session
+            upload_session_files.add(file_type)
+            
             return jsonify({
                 'message': 'File uploaded successfully',
                 'filename': filename,
                 'rows': len(df),
-                'columns': list(df.columns)
+                'columns': list(df.columns),
+                'session_files': list(upload_session_files)
             })
             
         except Exception as e:

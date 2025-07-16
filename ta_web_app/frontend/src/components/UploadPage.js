@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Button, message, Progress, Typography, Alert } from 'antd';
-import { UploadOutlined, CheckCircleOutlined, FileOutlined } from '@ant-design/icons';
+import { UploadOutlined, CheckCircleOutlined, FileOutlined, ClearOutlined } from '@ant-design/icons';
 import { useDropzone } from 'react-dropzone';
-import { uploadFile } from '../services/api';
+import { uploadFile, clearData } from '../services/api';
 
 const { Title, Text } = Typography;
 
@@ -85,6 +85,8 @@ const FileUploadCard = ({ title, fileType, description, uploaded, onUpload }) =>
 };
 
 const UploadPage = ({ uploadedFiles, setUploadedFiles }) => {
+  const [clearingData, setClearingData] = useState(false);
+
   const handleUpload = (fileType, success) => {
     setUploadedFiles(prev => ({
       ...prev,
@@ -92,14 +94,54 @@ const UploadPage = ({ uploadedFiles, setUploadedFiles }) => {
     }));
   };
 
+  const handleClearData = async () => {
+    setClearingData(true);
+    try {
+      await clearData();
+      setUploadedFiles({
+        students_classes: false,
+        students_sen: false,
+        timetable: false
+      });
+      message.success('All data cleared successfully! You can now upload new files.');
+    } catch (error) {
+      message.error('Failed to clear data: ' + (error.response?.data?.error || error.message));
+    } finally {
+      setClearingData(false);
+    }
+  };
+
   const allFilesUploaded = Object.values(uploadedFiles).every(Boolean);
+  const anyFilesUploaded = Object.values(uploadedFiles).some(Boolean);
 
   return (
     <div>
-      <Title level={2}>Upload Data Files</Title>
-      <Text type="secondary" style={{ display: 'block', marginBottom: 24 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+        <div>
+          <Title level={2} style={{ margin: 0 }}>Upload Data Files</Title>
+        </div>
+        {anyFilesUploaded && (
+          <Button 
+            danger 
+            icon={<ClearOutlined />} 
+            onClick={handleClearData}
+            loading={clearingData}
+          >
+            Clear All Data
+          </Button>
+        )}
+      </div>
+      <Text type="secondary" style={{ display: 'block', marginBottom: 16 }}>
         Upload the three required CSV files to begin your analysis. All files must be uploaded before you can run the analysis.
       </Text>
+
+      <Alert
+        message="Data Management"
+        description="When you upload the first file of a new set, all previous analysis data will be automatically cleared to ensure clean results."
+        type="info"
+        showIcon
+        style={{ marginBottom: 24 }}
+      />
 
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} md={8}>

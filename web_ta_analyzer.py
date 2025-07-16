@@ -35,6 +35,18 @@ class TANeedAnalyzer:
         """Update the weighting configuration"""
         self.weightings.update(weightings)
     
+    def clear_analysis_data(self):
+        """Clear all analysis data and file references"""
+        self.students_classes = None
+        self.students_sen = None
+        self.timetable = None
+        self.student_scores = {}
+        self.class_scores = {}
+        self.students_classes_file = None
+        self.students_sen_file = None
+        self.timetable_file = None
+        print("Cleared all previous analysis data")
+    
     def load_data_from_files(self):
         """Load data from uploaded files"""
         if not all([self.students_classes_file, self.students_sen_file, self.timetable_file]):
